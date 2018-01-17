@@ -5,7 +5,7 @@ import logging
 import logging.config
 import sys
 import json
-import ConfigParser
+import configparser
 import random
 
 from nifiapi.nifiapi import NifiApi
@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 # This script will deploy a template to a nifi server.
 #
 # Usage:
-# deploy_template -u http://104.198.4.19:8080/nifi-api -t /path/to/template.xml --start
+# deploy_template -u http://localhost:8080/nifi-api -t /path/to/template.xml --start
 #
 # At a high level this is what this script will do:
 # * Load the template XML file
@@ -42,7 +42,7 @@ def main():
     start = False
     template = None
     url = None
-    sensitive_file = "config/sensitive-sandbox.cfg"
+    sensitive_file = "config/sensitive.cfg"
     for opt, arg in opts:
         if opt == "-u":
             url = arg
@@ -57,7 +57,7 @@ def main():
 
     nifiapi = NifiApi(url)
 
-    config = ConfigParser.RawConfigParser()
+    config = configparser.RawConfigParser()
     config.optionxform = str  # Preserve case
 
     root_process_group = nifiapi.get_root_process_group()
