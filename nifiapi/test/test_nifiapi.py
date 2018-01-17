@@ -7,7 +7,7 @@ import json
 class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.nifiapi = NifiApi('http://104.198.4.19:8080/nifi-api')
+        cls.nifiapi = NifiApi('http://localhost:8080/nifi-api')
         logging.basicConfig(format='[%(filename)s:%(lineno)s - %(funcName)s() ] %(message)s')
         cls.logger = logging.getLogger('test_nifiapi')
         cls.logger.setLevel(logging.ERROR)
