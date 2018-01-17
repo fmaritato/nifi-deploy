@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import uuid
 import json
 import re
-import ConfigParser
+import configparser
 
 from time import sleep
 
@@ -26,7 +26,7 @@ class NifiApi:
         self.logger = logging.getLogger(__name__)
 
     def write_sensitive_properties(self, pg_id, sensitive_file):
-        config = ConfigParser.RawConfigParser()
+        config = configparser.RawConfigParser()
         config.optionxform = str  # Preserve case
         config.read(sensitive_file)  # This file shouldn't be checked in
         processors = self.get_processors_by_pg(pg_id)
